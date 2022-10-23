@@ -20,5 +20,23 @@ function turnRed() {
         }
     }
 }
-export { hello, turnRed };
+function buttonsHandler() {
+    var ts_tag = document.getElementById("ts-tag");
+    var js_tag = document.getElementById("js-tag");
+    //set button functionality for ts button
+    ts_tag.addEventListener("mouseover", function () {
+        document.getElementById("tsbtn").style.backgroundColor = "#b77219d2";
+    });
+    ts_tag.addEventListener("mouseout", function () {
+        document.getElementById("tsbtn").style.backgroundColor = "#4d5fd7b7";
+    });
+    //set button functionalnonality for js button
+    js_tag.addEventListener("mouseover", function () {
+        document.getElementById("jsbtn").style.backgroundColor = "#b77219d2";
+    });
+    js_tag.addEventListener("mouseout", function () {
+        document.getElementById("jsbtn").style.backgroundColor = "#4d5fd7b7";
+    });
+}
+export { hello, turnRed, buttonsHandler };
 //# sourceMappingURL=app.js.map

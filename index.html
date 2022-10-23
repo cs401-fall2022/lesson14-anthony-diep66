@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab6: Typescript</title>
+    <title>Lab6: TypeScript</title>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
@@ -13,20 +13,38 @@
     <script type="module">
         import {turnRed} from '/build/app.js'
         window.turnRed = turnRed;
+
+        import {buttonsHandler} from '/build/app.js';
+        window.addEventListener("DOMContentLoaded", buttonsHandler);
     </script>
 
     <div id="container" class="main-container">
         <div id="header">
             <h1>A Quick Tutorial on TypeScript</h1>
-            <p>A strongly typed programming language that is a strict superset of the Javascript language; maintained by Microsoft and is free and open sourced</p>
-            <div id="other">
-                <a href="https://github.com/anthony-diep66" alt="cyat">
-                    <div>
-                        <img src="pictures/cyat5.png" alt="cyat">
-                    </div>
-                    <span>My Github!</span>
-                    <p>anthony-diep66</p>
-                </a>
+            <p>A strongly typed programming language that is a strict superset of the JavaScript language; maintained by Microsoft and is free and open sourced</p>
+            <div id="master">
+                <div id="other">
+                    <a href="https://github.com/anthony-diep66" alt="link" target="_blank">
+                        <div>
+                            <img src="pictures/cyat5.png" alt="github-logo">
+                        </div>
+                        <span>My Github!</span>
+                        <p>anthony-diep66</p>
+                    </a>
+                </div>
+                <div id="ig-container">
+                    <a href="https://www.instagram.com/anthony_dh_/" alt="link" target="_blank">
+                        <div>
+                            <img id="ig" src="pictures/logo-instagram-png-13551.png" alt="ig-logo">
+                        </div>
+                        <span>My Instagram!</span>
+                        <p>anthony_dh_</p>
+                    </a>
+                </div>
+            </div>
+           <div id="tags">
+                <a id="ts-tag" mouseover href="https://en.wikipedia.org/wiki/TypeScript" target="_blank"><input id="tsbtn" type="button" value="TypeScript"></a>
+                <a id="js-tag" href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"><input id="jsbtn" type="button" value="JavaScript"></a>
             </div>
         </div>
         <div id="hero-container">
@@ -47,13 +65,13 @@
                 <h2>Introduction</h2>
                 <p>
                     JavaScript was originally made as a simple scripting language for websites. Small snippets of 
-Javascript were used to introduce user interaction with the website and anything more than that was
-considered unusual. As time went on and with the massive growth of "the web", Javascript became 
-increasingly popular among developers. What started as small, embedded javascript code hidden inside browsers
+JavaScript were used to introduce user interaction with the website and anything more than that was
+considered unusual. As time went on and with the massive growth of "the web", JavaScript became 
+increasingly popular among developers. What started as small, embedded JavaScript code hidden inside browsers
 evolved into applications such as node.js being created.
                 </p>
                 <p>
-                    Javascript could however use some improvements. For one, Javascript produces some rather unexpected
+                    JavaScript could however use some improvements. For one, JavaScript produces some rather unexpected
 behaviors when different types of literals are compared.
                 </p>
                 <pre>
@@ -65,7 +83,7 @@ behaviors when different types of literals are compared.
                 <p>
                     Perhaps for someone that programs in C++ or Java, this is rather unusual as the compairison amongst
                     differing types of variables are being compared, that is, a string literal to a number literal. Another
-                    odd quality of Javascript are the accessing properties of objects
+                    odd quality of JavaScript are the accessing properties of objects
                 </p>
                 <pre>
                     const obj = {
@@ -76,8 +94,8 @@ behaviors when different types of literals are compared.
                     obj.printSomething();   
                 </pre>
                 <p>
-                    One last point to make is Javascript's pure dynamic typing. Given the intentionally vague 
-                    Javascript code:
+                    One last point to make is JavaScript's pure dynamic typing. Given the intentionally vague 
+                    JavaScript code:
                 </p>
                 <pre>
                     message.toLowerCase();
@@ -92,21 +110,21 @@ behaviors when different types of literals are compared.
                     <li>If so, is toLowerCase() a callable function?</li>
                 </ol>
                 <p>
-                    Due to Javascript's dynamic typing, the interpreter can't answer any of these questions. Perhaps 
+                    Due to JavaScript's dynamic typing, the interpreter can't answer any of these questions. Perhaps 
                     message was actually a string. In that case, message() certainly wouldn't make sense. The only
                     way to find out is to run the code and see what happens, there are no static type checking available.
                 </p>
                 <p>
-                    Now, introducing Typescript, a superset of Javascript that introduces static type checking 
+                    Now, introducing TypeScript, a superset of JavaScript that introduces static type checking 
                     and enforces a stricter set of rules towards the usage of types. Division by zero, invalid
-                    array access, and the previously mentioned unusual behaviors of Javascript are all addressed 
-                    in Typescript. 
+                    array access, and the previously mentioned unusual behaviors of JavaScript are all addressed 
+                    in TypeScript. 
                 </p>
                 
                 <h2>Types</h2>
                 <p>
                     As mentioned previously, the typing on an object can be determined in a static way. Do this by either 
-                    assigning a literal to a variable to have Typescript infer the type or, explicitly state what type it is 
+                    assigning a literal to a variable to have TypeScript infer the type or, explicitly state what type it is 
                     using an interface:
                 </p>
                 <div id="split-table">
@@ -131,7 +149,7 @@ behaviors when different types of literals are compared.
                 </div>
                 <h3>Composing Types</h3>
                 <p>
-                    Typescript also allows the combination of multiple types into one complex types. There are also 
+                    TypeScript also allows the combination of multiple types into one complex types. There are also 
                     two ways of doing this via <em>Unions</em> and <em>Generics.</em>
                 </p>
                 <div id="split-table">
@@ -148,32 +166,40 @@ behaviors when different types of literals are compared.
                 </div>
                 <h3>Structural Types</h3>
                 <p>
-                    Typescript also has a thing called 
+                    TypeScript also has a thing called 
                     where an object having all the properties and method required by another object,
                     is considered to be that previously declared object. As shown on 
                     <a href="https://en.wikipedia.org/wiki/Duck_typing" alt="duck typing" target=_blank>Wikipedia:</a>
                 </p>
                 <pre>
-                    class Duck:
-                        def swim(self):
-                            print("Duck swimming")
-                        def fly(self):
-                            print("Duck flying")
-                    class Whale:
-                        def swim(self):
-                            print("Whale swimming")
-                    for animal in [Duck(), Whale()]:
-                        animal.swim()
-                        animal.fly()
-
-
-                    Duck swimming
-                    Duck flying 
-                    Whale swimming
-                    AttributeError: 'Whale' object has no attribute 'fly'
+                class Duck:
+                    def __init__(self, name):
+                        self.name = name
+                    def quack(self):
+                        print("Quack!")
+                
+                class Cow:
+                    def __init__(self, name):
+                        self.name = name;
+                    def quack(self):
+                        print("??")
+                
+                def quack(obj):
+                    obj.quack()
+                
+                duck = Duck("Donald");
+                cow = Cow("ol Betsy");
+                
+                quack(duck)     # Quack!
+                quack(cow)      # ??
                 </pre>
                 <p>
-                    In the above example, the whale object has 
+                    In the example above, there are two instantiated objects of type Duck and a Cow. Additionally, there is a 
+                    function named <em>quack(obj)</em>. In a dynamically typed languaged such as Python, both instances of 
+                    <em>duck</em> and <em>cow</em> can be passed into the function <em>quack(obj)</em> and produce the correct
+                    response. In this case, when the Duck object is passed, Python knows to call the quack that belongs to 
+                    an object of type <em>Duck</em>. Same argument goes for the cow. In all, the functionality of <em>quack(obj)</em>
+                    is dependent on the typing of the passed parameters.
                 </p>
                 <div>
                     <pre>
@@ -183,16 +209,18 @@ behaviors when different types of literals are compared.
                         }
 
                         function logPoint(p: Point){
-                            &lt!--
-                                do something 
-                            --&gt
+                            /*
+                            *    do something 
+                            */
                         }
                         const point = {x: 12, y: 26;}
                         logPoint(point)
                     </pre>
                 </div>
                 <p>
-                    Here, calling logPoint on the point objected that was created will not throw any errors and TypeScript recognizes the point object to be of the Point interface type.
+                    Here, TypeScript recognizes that <em>const point</em> has the same structure as the Point interface. So although
+                    the function <em>logPoint</em> expects an object of type Point, calling <em>logPoint </em> on <em>point</em>
+                    will successfully ecexute as <em>point</em> has the same structure as the interface Point.
                 </p>
             </div>
             <div id="right">
